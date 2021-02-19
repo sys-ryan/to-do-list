@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+  </head>
+  <body>
+
+    <% if(day === "Saturday" || day === "Sunday"){ %>
+      <h1 style="color: red"><%= day %></h1>
+    <% }else { %>
+      <h1 style="color: black"><%= day %></h1>
+    <% } %>
+
+    <ul>
+      <% items.forEach((item) => { %>
+        <li><%= item %></li>
+      <% }); %>
+    </ul>
+
+    <form  action="/" method="post">
+      <input type="text" name="newItem">
+      <button type="submit" name="button">+</button>
+    </form>
+
+  </body>
+</html>
