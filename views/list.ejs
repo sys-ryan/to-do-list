@@ -3,25 +3,39 @@
   <head>
     <meta charset="utf-8">
     <title>To Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
 
-    <% if(day === "Saturday" || day === "Sunday"){ %>
-      <h1 style="color: red"><%= day %></h1>
-    <% }else { %>
-      <h1 style="color: black"><%= day %></h1>
-    <% } %>
+    <div class="box" id="heading">
+      <% if(title === "Saturday" || title === "Sunday"){ %>
+        <h1 style="color: red"><%= title %></h1>
+      <% }else { %>
+        <h1 style="color: black"><%= title %></h1>
+      <% } %>
+    </div>
 
-    <ul>
-      <% items.forEach((item) => { %>
-        <li><%= item %></li>
-      <% }); %>
-    </ul>
+    <div class="box">
+        <% items.forEach((item) => { %>
+          <div class="item">
+            <input type="checkbox" name="" value="">
+            <p><%= item %></p>
+          </div>
+        <% }); %>
 
-    <form  action="/" method="post">
-      <input type="text" name="newItem">
-      <button type="submit" name="button">+</button>
-    </form>
+
+        <form  class="item" action="/" method="post">
+          <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+          <button type="submit" name="list" value="<%= title %>">+</button>
+        </form>
+    </div>
+
+
+
 
   </body>
+
+  <footer>
+    Copyright 2021 Ryan Kim
+  </footer>
 </html>
