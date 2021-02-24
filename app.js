@@ -92,13 +92,28 @@ app.post("/", function(req, res){
 
 app.post("/delete", function(req, res){
   const id = req.body.item;
-  Item.deleteOne({_id: id}, function(err){
-    if(err){
-      console.log(err);
-    }else {
-      res.redirect("/");
-    }
-  });
+  const listName = req.body.listName;
+
+  if(listName === "Today"){
+    Item.deleteOne({_id: id}, function(err){
+      if(err){
+        console.log(err);
+      }else {
+        res.redirect("/");
+      }
+    });
+  }else {
+    List.findOneAndUpdate(
+      {name: listName},
+      {$pull: {items: {_id: id}}},
+      function(err, foundList){
+        if(!err){
+          res.redirect("/" + listName);
+        }
+      }
+    )
+  }
+
 });
 
 app.get("/:listName", function(req, res){
