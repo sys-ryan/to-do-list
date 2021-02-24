@@ -67,6 +67,17 @@ app.post("/", function(req, res){
   res.redirect("/");
 });
 
+app.post("/delete", function(req, res){
+  const id = req.body.item;
+  Item.deleteOne({_id: id}, function(err){
+    if(err){
+      console.log(err);
+    }else {
+      res.redirect("/");
+    }
+  });
+});
+
 app.get("/Work", function(req, res){
   const title = "Work";
   res.render("list", {title: title, items: workItems });

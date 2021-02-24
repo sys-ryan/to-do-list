@@ -17,10 +17,12 @@
 
     <div class="box">
         <% items.forEach((item) => { %>
-          <div class="item">
-            <input type="checkbox" name="item" value="">
-            <p><%= item.name %></p>
-          </div>
+          <form action="/delete" method="post">
+            <div class="item">
+              <input type="checkbox" name="item" value="<%= item._id %>" onChange="this.form.submit()">
+              <p><%= item.name %></p>
+            </div>
+          </form>
         <% }); %>
 
 
